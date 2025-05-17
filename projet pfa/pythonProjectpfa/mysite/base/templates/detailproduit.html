@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Nos Produits{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.nom }}" class="img-fluid rounded shadow" style="max-height: 400px; object-fit: cover;">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-lg p-4" style="border-radius: 20px;">
+                <h2 class="mb-3" style="color: #28a745;">{{ product.nom }}</h2>
+                <p class="text-muted">{{ product.description }}</p>
+
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <strong>Prix :</strong>
+                    <span class="text-success" style="font-size: 1.2rem;">{{ product.prix }} DH</span>
+                </div>
+
+                {% if product.country_code %}
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <strong>Origine :</strong>
+                    <span>{{ product.country_code }}</span>
+                </div>
+                {% endif %}
+
+                <div class="d-flex flex-column gap-2 mt-4">
+                    <a href="{% url 'list' %}" class="btn btn-outline-primary btn-lg" style="border-radius: 50px;">
+                        Retour à la liste des produits
+                    </a>
+                    <a href="{% url 'commander' product.id %}" class="btn btn-success btn-lg" style="border-radius: 50px;">
+                        Commander
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #f0f4f7, #e2f7e1);
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Panier</h2>
+    {% if panier %}
+    <ul class="list-group">
+        {% for item in panier %}
+        <li class="list-group-item">
+            {{ item.produit_nom }} - {{ item.prix }} DH
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-muted">Votre panier est vide.</p>
+    {% endif %}
+</div>
+{% endblock %}

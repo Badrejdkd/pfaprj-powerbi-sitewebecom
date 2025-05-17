@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="card shadow-lg p-4" style="width: 100%; max-width: 500px; border-radius: 20px;">
+        <h2 class="text-center mb-4" style="font-weight: bold; color: #0f72e3;">Créer un compte</h2>
+        <form method="POST" class="animate__animated animate__fadeIn">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-grid gap-2">
+                <button type="submit"  style="border-radius: 50px;">S'inscrire</button>
+            </div>
+        </form>
+        <div class="text-center mt-3">
+            <p>Déjà un compte ? 
+                <a href="{% url 'login' %}" class="text-decoration-none" style="color: #0f72e3; font-weight: bold;">
+                    Se connecter
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Optionnel : Ajout d'animations si tu utilises Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+    }
+
+    input, select, textarea {
+        border-radius: 15px !important;
+        padding: 10px !important;
+    }
+
+    .form-control:focus {
+        box-shadow: 0 0 10px #0f72e3;
+        border-color: #0f72e3;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 90vh;">
+    <div class="card p-5 shadow-lg" style="width: 100%; max-width: 600px; border-radius: 20px;">
+        <h2 class="text-center mb-4" style="color: #28a745; font-weight: bold;">Informations Client</h2>
+        <form method="post" class="animate__animated animate__fadeInUp">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-success btn-lg" style="border-radius: 50px;">Valider la commande</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Animate.css pour animation -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #d4fc79, #96e6a1);
+    }
+
+    input, select, textarea {
+        border-radius: 15px !important;
+        padding: 12px !important;
+        border: 1px solid #ced4da;
+    }
+
+    input:focus, select:focus, textarea:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+        outline: none;
+    }
+
+    label {
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+</style>
+{% endblock %}

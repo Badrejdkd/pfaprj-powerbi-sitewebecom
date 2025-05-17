@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    .full-height {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f9fa;
+    }
+
+    .login-box {
+        width: 100%;
+        max-width: 400px;
+        background-color: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<div class="full-height">
+    <div class="login-box">
+        <h3 class="text-center mb-4">Connexion</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">Nom d'utilisateur</label>
+                <input type="text" name="username" class="form-control" id="username" required>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" name="password" class="form-control" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+        </form>
+        <div class="text-center mt-3">
+            <p>Pas encore inscrit ? <a href="{% url 'register' %}">Créer un compte</a></p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

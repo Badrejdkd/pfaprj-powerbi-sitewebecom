@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <!-- Section Contact -->
+  <section id="contact" class="container my-5">
+    <h2 class="text-center mb-4">Contactez-nous</h2>
+
+    <div class="row">
+      <!-- Informations sur le site et les produits -->
+      <div class="col-md-6">
+        <h3>À propos de notre boutique</h3>
+        <p>Bienvenue sur notre site de e-commerce spécialisé dans les produits électroniques de haute qualité. Nous proposons une large gamme de produits allant des smartphones aux accessoires électroniques, en passant par les ordinateurs portables, les consoles de jeu et bien plus encore.</p>
+        <p>Nous nous engageons à offrir à nos clients des produits de qualité, un service après-vente de premier ordre, ainsi qu'une expérience d'achat en ligne facile et sécurisée.</p>
+
+        <h3>Nos produits populaires</h3>
+        <ul class="list-unstyled">
+          <li><strong>Smartphones :</strong> Découvrez nos dernières marques comme Samsung, Apple et Huawei.</li>
+          <li><strong>Ordinateurs portables :</strong> Des modèles performants de marques comme Dell, HP, et Lenovo.</li>
+          <li><strong>Accessoires :</strong> Casques, chargeurs, étuis de téléphone, et bien plus.</li>
+          <li><strong>Consoles de jeu :</strong> Playstation, Xbox, Nintendo Switch et accessoires associés.</li>
+        </ul>
+
+        <h3>Services supplémentaires</h3>
+        <ul class="list-unstyled">
+          <li><strong>Livraison rapide :</strong> Nous assurons la livraison de vos commandes dans les plus brefs délais.</li>
+          <li><strong>Assistance après-vente :</strong> Notre équipe de support est disponible pour répondre à toutes vos questions.</li>
+          <li><strong>Garantie :</strong> Tous nos produits sont couverts par une garantie de 2 ans.</li>
+        </ul>
+
+        <h3>Où nous trouver</h3>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2625.935029998229!2d2.2922923156742384!3d48.85884477928744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d7a8d45b85%3A0x3fd1b5054311f4a4!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1627229682711!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <!-- Formulaire de Contact -->
+      <div class="col-md-6">
+        <h3>Envoyez-nous un message</h3>
+        <p>Vous avez une question concernant un produit, une commande ou un service ? Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.</p>
+
+        <form method="POST" action="{% url 'contact' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="name" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-warning w-100">Envoyer</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <h3>Foire Aux Questions (FAQ)</h3>
+        <p>Voici quelques questions fréquemment posées par nos clients. Si vous avez d'autres questions, n'hésitez pas à nous contacter directement.</p>
+
+        <h4>Comment suivre ma commande ?</h4>
+        <p>Une fois votre commande expédiée, vous recevrez un email avec un numéro de suivi pour suivre l'état de votre livraison.</p>
+
+        <h4>Quels modes de paiement acceptez-vous ?</h4>
+        <p>Nous acceptons les paiements par carte bancaire, PayPal et virement bancaire.</p>
+
+        <h4>Les produits sont-ils garantis ?</h4>
+        <p>Oui, tous nos produits sont couverts par une garantie de 2 ans, à compter de la date d'achat.</p>
+
+        <h4>Puis-je retourner un produit ?</h4>
+        <p>Oui, si vous n'êtes pas satisfait de votre achat, vous pouvez retourner le produit dans les 30 jours suivant l'achat pour un remboursement ou un échange.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Footer -->
+  <footer class="text-center py-4">
+    <p>&copy; 2025 NotreEcommerce.com - Tous droits réservés</p>
+  </footer>
+
+{% endblock %}

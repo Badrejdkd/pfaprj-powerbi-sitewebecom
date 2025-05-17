@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .category-card {
+        border-radius: 1rem;
+        overflow: hidden;
+        background: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .category-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-card img {
+        height: 220px;
+        object-fit: cover;
+        width: 100%;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+    }
+
+    .category-card-body {
+        padding: 1.5rem;
+    }
+
+    .category-card-body a {
+        border-radius: 50px;
+        padding: 0.5rem 1.5rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .category-card-body a:hover {
+        background-color: #0d6efd;
+        color: #fff;
+    }
+</style>
+
+<!-- SECTION HERO VIDEO -->
+<section class="hero-section position-relative">
+    <video autoplay muted loop class="w-100 h-100 object-fit-cover">
+        <source src="{% static 'videos/kk.mp4' %}" type="video/mp4">
+        Votre navigateur ne supporte pas la vidéo HTML5.
+    </video>
+    <div class="overlay position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+    <div class="hero-content position-absolute top-50 start-50 translate-middle text-center text-white">
+        <h1 class="display-4 font-weight-bold text-shadow">Découvrez nos Meilleurs Produits</h1>
+        <p class="lead text-shadow mb-4">Des équipements de qualité pour vous accompagner dans votre vie quotidienne</p>
+        <a href="#comp" class="btn btn-primary btn-lg px-4 py-2 rounded-pill shadow-sm">Explorer la Boutique</a>
+    </div>
+</section>
+
+<!-- SECTION CATEGORIES -->
+<section class="categories-section py-5 bg-light" id="comp">
+    <div class="container text-center">
+        <h2 class="display-4 font-weight-bold mb-4">Nos compagnies</h2>
+        <div class="row">
+            {% for compagnie in comp %}
+                <div class="col-md-4 mb-4">
+                    <div class="category-card shadow-sm rounded h-100 d-flex flex-column">
+                        {% if compagnie.image %}
+                            <img src="{{ compagnie.image.url }}" alt="{{ compagnie.nom }}" class="img-fluid rounded-top" style="height: 250px; object-fit: cover; width: 100%;">
+                        {% else %}
+                            <img src="{% static 'images/default-company.jpg' %}" alt="Image par défaut" class="img-fluid rounded-top" style="height: 250px; object-fit: cover; width: 100%;">
+                        {% endif %}
+                        <div class="category-card-body p-4 flex-grow-1 d-flex flex-column justify-content-between">
+                            <h5 class="mb-3">{{ compagnie.nom }}</h5>
+                            <a href="{% url 'products_by_company' compagnie.id %}" class="btn btn-outline-primary mt-auto">Voir plus</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- SECTION FOOTER -->
+<section class="footer-section bg-dark text-white py-5">
+    <div class="container text-center">
+        <p class="mb-0">&copy; 2025 Votre Boutique Sport | Tous droits réservés</p>
+    </div>
+</section>
+{% endblock %}
+

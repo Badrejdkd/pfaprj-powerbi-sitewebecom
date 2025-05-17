@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- SECTION PRODUITS -->
+<section class="products-section py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 text-center">
+                <h2 class="display-4 font-weight-bold text-dark">Découvrez Nos Produits</h2>
+                <p class="lead text-muted">Une sélection de produits haut de gamme à des prix compétitifs</p>
+            </div>
+        </div>
+        <form method="get" action="" class="mb-5">
+    <div class="input-group w-50 mx-auto">
+        <input type="text" name="q" class="form-control" placeholder="Rechercher un produit..." value="{{ query|default_if_none:'' }}">
+        <button class="btn btn-outline-primary" type="submit">Rechercher</button>
+    </div>
+</form>
+
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-4 col-sm-6 mb-5">
+                <div class="card shadow-lg border-0 rounded-3 overflow-hidden">
+                    <a href="{% url 'product_detail' product.id %}" class="text-decoration-none">
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" class="card-img-top img-fluid" alt="{{ product.nom }}" loading="lazy">
+                        {% else %}
+                        <img src="{% static 'default-product.jpg' %}" class="card-img-top img-fluid" alt="Image par défaut" loading="lazy">
+                        {% endif %}
+                    </a>
+                    <div class="card-body text-center p-4">
+                        <h5 class="card-title font-weight-bold text-dark text-truncate" title="{{ product.nom }}">{{ product.nom }}</h5>
+                        <p class="card-text text-muted">{{ product.prix }} DH</p>
+                        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary mt-3 px-4 py-2 rounded-pill shadow-sm">Voir Détails</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <p class="text-muted font-italic">Aucun produit disponible.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
